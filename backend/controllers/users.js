@@ -62,6 +62,23 @@ export const Login = (async(req, res) => {
     }
 });
 
+export const getUserName = async (req,res) => {
+    try {
+        const { userId } = req.user;
+
+        const user = await Users.findByPk(userId, {
+            attributes:['name'],
+        });
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found'});
+        }
+        res.json({ userName: user.name })
+    } catch (error) {
+    console.log(error);
+    return res.status(500);
+    }
+};
+
 export const Logout = (async(req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if(!refreshToken) return res.sendStatus(204);
