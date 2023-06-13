@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/database.js";
 import router from "./routes/index.js";
+import musik from "./routes/musik.js";
+
 dotenv.config();
 const app = express();
 
@@ -19,6 +21,7 @@ app.use(cors({ credentials: true, origin: '0.0.0.0'}))
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
+app.use(musik);
 app.use(cookieParser());
 
 app.listen(8080, () => 

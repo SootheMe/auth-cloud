@@ -97,3 +97,4 @@ export const Logout = (async(req, res) => {
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
 });
+module.exports = {getUsers,Register,Login,getUserName,Logout};
